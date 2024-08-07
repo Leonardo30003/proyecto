@@ -52,14 +52,14 @@ def login_page() -> rx.Component:
                             rx.box(
                                 rx.form(
                                     rx.vstack(
-                                        form_fields("Numero de Cedula", "Enter your ID", "text", "cedula"),
-                                        rx.button("Sign In", type="submit", background=Color.SECONDARY.value, color=TextColor.BUTTON_TEXT.value,
+                                        form_fields("Numero de Cedula", "Ingresa tu cédula", "number", "cedula", 10),
+                                        rx.button("Buscar", type="submit", background=Color.SECONDARY.value, color=TextColor.BUTTON_TEXT.value,
                                                   _hover={"background": Color.PRIMARY.value}, padding="12px", border_radius="5px"),
                                         rx.cond(
                                             PageState.error_message != "",
                                             rx.text(PageState.error_message, color="red", font_size="14px"),
                                         ),
-                                        spacing="15px",
+                                        spacing="9",
                                     ),
                                     on_submit=PageState.handle_submit_docente,
                                 ),
@@ -75,15 +75,15 @@ def login_page() -> rx.Component:
                             rx.box(
                                 rx.form(
                                     rx.vstack(
-                                        form_fields("Email", "Enter your email", "text", "username"),
-                                        form_fields("Password", "Enter your password", "password", "password"),
+                                        form_fields("Email", "Enter your email", "text", "username", 50),
+                                        form_fields("Password", "Enter your password", "password", "password", 50),
                                         rx.button("Sign In", type="submit", background=Color.SECONDARY.value, color=TextColor.BUTTON_TEXT.value,
                                                   _hover={"background": Color.PRIMARY.value}, padding="12px", border_radius="5px"),
                                         rx.cond(
                                             PageState.error_message != "",
                                             rx.text(PageState.error_message, color="red", font_size="14px"),
                                         ),
-                                        spacing="15px",
+                                        spacing="9",
                                     ),
                                     on_submit=PageState.handle_submit_admin,
                                 ),
@@ -115,7 +115,7 @@ def login_page() -> rx.Component:
         height="100vh",
     )
 
-def form_fields(label: str, placeholder: str, type: str, name: str) -> rx.Component:
+def form_fields(label: str, placeholder: str, type: str, name: str, max_length: int) -> rx.Component:
     return rx.form.field(
         rx.form.label(label, font_size="lg", font_weight="medium", color=TextColor.HEADER.value),
         rx.input(
@@ -126,8 +126,9 @@ def form_fields(label: str, placeholder: str, type: str, name: str) -> rx.Compon
             border_radius="5px",
             border="1px solid #E0E0E0",
             width="100%",
-            background=Color.CONTENT.value,
+            background="#F9F9F9",
             color=TextColor.BODY.value,
+            max_length=max_length,
         ),
         align_items="flex-start",
         width="100%",
