@@ -133,3 +133,4 @@ def form_fields(label: str, placeholder: str, type: str, name: str) -> rx.Compon
         width="100%",
         margin_bottom="10px",
     )
+ 
